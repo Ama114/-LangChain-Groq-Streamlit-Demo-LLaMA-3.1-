@@ -2,7 +2,7 @@
 
 This project is a simple demo that uses LangChain, Groq API, and Streamlit to build an interactive chatbot powered by LLaMA 3.1.
 
-🔧 What the Code Does:
+### What the Code Does:
 Environment Setup:
 
 Loads your Groq API key securely from a .env file using python-dotenv.
