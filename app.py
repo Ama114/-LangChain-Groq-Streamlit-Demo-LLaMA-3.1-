@@ -1,5 +1,5 @@
 import os
-from dotenv import load_dotenv
+#from dotenv import load_dotenv
 import streamlit as st
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
@@ -8,6 +8,9 @@ from langchain_groq import ChatGroq
 # 1. Load environment variables
 load_dotenv()
 api_key = os.getenv("GROQ_API_KEY")
+
+os.environ["GROQ_API_KEY"] = st.secrets["GROQ_API_KEY"]
+
 
 # Streamlit Page Config
 st.set_page_config(page_title="Groq Chatbot", page_icon="🤖")
