@@ -1,6 +1,5 @@
 # -LangChain-Groq-Streamlit-Demo-LLaMA-3.1-
 
- 
 This project is a simple demo that uses LangChain, Groq API, and Streamlit to build an interactive chatbot powered by LLaMA 3.1.
 
 ### What the Code Does:
@@ -28,13 +27,4 @@ This project is a simple demo that uses LangChain, Groq API, and Streamlit to bu
 * Combines the prompt, the model, and an output parser to process the response.
 
 * When a user enters a question, the model generates and displays an answer.
-
-
-
-
-### Output examples
-
-
-<img width="1863" height="908" alt="image" src="https://github.com/user-attachments/assets/664221c4-d606-4d0a-85a2-9fefbdf49837" />
-<img width="1867" height="913" alt="image" src="https://github.com/user-attachments/assets/34addd56-8959-40be-bb99-bbfc434da9fc" />
 
