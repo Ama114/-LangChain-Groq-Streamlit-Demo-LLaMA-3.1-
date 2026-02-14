@@ -1,68 +1,56 @@
+ 
+
 import os
-#from dotenv import load_dotenv
+from dotenv import load_dotenv
 import streamlit as st
-#from langchain_core.prompts import ChatPromptTemplate
-from langchain.prompts import ChatPromptTemplate
 
-from langchain_core.output_parsers import StrOutputParser
-from langchain_groq import ChatGroq
+# Import from our files
+from config import APP_TITLE, APP_SUBTITLE, WELCOME_MESSAGE
+from styles import get_custom_css
+from utils import get_api_key
+from sidebar import render_sidebar
+from chat import display_chat_history, handle_chat_input
 
-# 1. Load environment variables
-# load_dotenv()
-api_key = os.getenv("GROQ_API_KEY")
+# Load environment variables
+load_dotenv()
+api_key = get_api_key()
 
-os.environ["GROQ_API_KEY"] = st.secrets["GROQ_API_KEY"]
+# Page config
+st.set_page_config(
+    page_title="AI Chat Assistant",
+    page_icon="🤖",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
+# Apply custom CSS
+st.markdown(get_custom_css(), unsafe_allow_html=True)
 
-# Streamlit Page Config
-st.set_page_config(page_title="Groq Chatbot", page_icon="🤖")
-st.title("LangChain Chat - LLaMA 3.1")
+# Header
+st.markdown(f'<h1 class="main-title">{APP_TITLE}</h1>', unsafe_allow_html=True)
+st.markdown(f'<p class="subtitle">{APP_SUBTITLE}</p>', unsafe_allow_html=True)
 
-# 2. Session State එක initialize කිරීම (Chat history එක මතක තබා ගැනීමට)
+# Initialize session state
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# 3. කලින් කරපු Chat history එක screen එකේ පෙන්වීම
-for message in st.session_state.messages:
-    with st.chat_message(message["role"]):
-        st.markdown(message["content"])
+# Render sidebar and get settings
+model_option, temperature = render_sidebar()
 
-# 4. Chat Input එක (ChatGPT වගේ පහළින් එන එක)
-if prompt_input := st.chat_input("What is on your mind?"):
-    
-    # User ගේ message එක screen එකේ පෙන්වීම සහ save කිරීම
-    st.session_state.messages.append({"role": "user", "content": prompt_input})
-    with st.chat_message("user"):
-        st.markdown(prompt_input)
+# Welcome message
+if not st.session_state.messages:
+    st.info(WELCOME_MESSAGE)
 
-    # 5. LLM Setup සහ Response එක ලබා ගැනීම
-    try:
-        llm = ChatGroq(
-            model="llama-3.1-8b-instant",
-            groq_api_key=api_key
-        )
-        
-        prompt = ChatPromptTemplate.from_messages([
-            ("system", "You are a helpful assistant. Please respond as an expert."),
-            # මෙතනදී මුළු chat history එකම යැවීම වැදගත් (Context එක තබා ගැනීමට)
-            ("placeholder", "{chat_history}"), 
-            ("user", "{question}")
-        ])
-        
-       # Mehema liyanna:
-        output_parser = StrOutputParser()
-        chain = prompt | llm | output_parser
+# Display chat history
+display_chat_history()
 
-        with st.chat_message("assistant"):
-            # Response එක stream වෙනවා වගේ පෙන්වන්න පුළුවන්
-            response = chain.invoke({
-                "question": prompt_input,
-                "chat_history": st.session_state.messages # දැනට තියෙන history එක
-            })
-            st.markdown(response)
-            
-        # Assistant ගේ response එක save කිරීම
-        st.session_state.messages.append({"role": "assistant", "content": response})
+# Handle chat input
+handle_chat_input(model_option, temperature, api_key)
 
-    except Exception as e:
-        st.error(f"Error: {e}")
+# Footer
+st.divider()
+st.markdown(
+    "<p style='text-align: center; color: #666; font-size: 0.9rem;'>"
+    "Made with AVD </p>",
+    unsafe_allow_html=True
+)
