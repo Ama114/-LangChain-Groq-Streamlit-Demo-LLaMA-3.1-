@@ -69,5 +69,3 @@ python-dotenv
 ```
 
 ---
-
-**Made with ❤️**
