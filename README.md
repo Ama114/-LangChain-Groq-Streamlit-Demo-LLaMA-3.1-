@@ -53,13 +53,9 @@ venv\Scripts\activate          # Windows
 # Install dependencies
 pip install -r requirements.txt
  
-**Step 3:** Add your API key
+# use `.env` file for protect the api key
 
-Open `.env` file and add:
-```env
-GROQ_API_KEY=your_actual_api_key_here
-```
-
+ 
  
 ---
 
