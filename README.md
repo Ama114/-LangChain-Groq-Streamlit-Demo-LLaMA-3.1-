@@ -54,18 +54,16 @@ venv\Scripts\activate          # Windows
 pip install -r requirements.txt
  
 # use `.env` file for protect the api key
-
- 
  
 ---
 
 ## 📦 requirements.txt
 ```
-streamlit
-langchain
-langchain-core
-langchain-groq
-python-dotenv
+-streamlit
+-langchain
+-langchain-core
+-langchain-groq
+-python-dotenv
 ```
 
 ---
