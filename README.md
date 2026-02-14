@@ -48,7 +48,7 @@ ai-chat-assistant/
 python -m venv venv
 
 # Activate it
-venv\Scripts\activate          # Windows
+venv\Scripts\activate    
 
 # Install dependencies
 pip install -r requirements.txt
@@ -58,7 +58,7 @@ pip install -r requirements.txt
 ---
 
 ## 📦 requirements.txt
-```
+```bash
 -streamlit
 -langchain
 -langchain-core
