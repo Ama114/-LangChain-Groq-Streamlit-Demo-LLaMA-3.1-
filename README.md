@@ -1,30 +1,69 @@
-# -LangChain-Groq-Streamlit-Demo-LLaMA-3.1-
+# 🤖 AI Chat Assistant
 
-This project is a simple demo that uses LangChain, Groq API, and Streamlit to build an interactive chatbot powered by LLaMA 3.1.
+A real-time AI chatbot built with LangChain and Groq API.
 
-### What the Code Does:
-#### 1. Environment Setup:
+---
 
-  * Loads your Groq API key securely from a .env file using python-dotenv.
+## 🛠️ Technologies Used
 
-#### 2. User Interface:
+- **Streamlit** - Web interface
+- **LangChain** - AI framework
+- **Groq API** - Fast AI inference
+- **LLaMA 3.1** - AI model
+- **Python 3.8+**
 
- * Uses Streamlit to create a web UI where users can input a question.
+---
 
-#### 3. Prompt Template:
+## 📂 Project Structure
+```
+ai-chat-assistant/
+├── app.py          # Main file - runs the application
+├── config.py       # Settings - models, colors, messages
+├── utils.py        # Helper functions - API key, export, stats
+├── sidebar.py      # Sidebar - settings panel UI
+├── chat.py         # Chat logic - AI responses
+├── styles.py       # CSS - UI styling
+├── .env            # API key 
+└── requirements.txt
+```
 
-* Sets up a basic LangChain prompt:
+### What Each File Does
 
-      System message: "You are a helpful assistant."
+| File | Purpose |
+|------|---------|
+| `app.py` | Main controller - brings everything together |
+| `config.py` | Settings - models list, colors, messages  |
+| `utils.py` | Helper functions - API validation, export, stats  |
+| `sidebar.py` | Sidebar UI - model selection, temperature  |
+| `chat.py` | Chat logic - generates AI responses  |
+| `styles.py` | CSS styling - colors, buttons  |
 
-      User message: Includes the actual question typed by the user.
+---
 
-#### 4. Language Model (LLM):
-* Connects to Groq’s LLaMA 3.1 model using ChatGroq.
+## 🚀 Setup & Run
 
-#### 5. LangChain Chain:
+### 1️⃣ Installation
+```bash
+# Create virtual environment
+python -m venv venv
 
-* Combines the prompt, the model, and an output parser to process the response.
+# Activate it
+venv\Scripts\activate    
 
-* When a user enters a question, the model generates and displays an answer.
+# Install dependencies
+pip install -r requirements.txt
+ 
+# use `.env` file for protect the api key
+ 
+---
 
+## 📦 requirements.txt
+```b
+-streamlit
+-langchain
+-langchain-core
+-langchain-groq
+-python-dotenv
+```
+
+---
