@@ -58,7 +58,7 @@ pip install -r requirements.txt
 ---
 
 ## 📦 requirements.txt
-```bash
+```
 -streamlit
 -langchain
 -langchain-core
